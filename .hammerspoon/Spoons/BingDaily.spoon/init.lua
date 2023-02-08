@@ -36,7 +36,7 @@ local function curl_callback(exitCode, stdOut, stdErr)
     if exitCode == 0 then
         obj.task = nil
         obj.last_pic = obj.file_name
-        local localpath = os.getenv("HOME") .. "/.Trash/" .. obj.file_name
+        local localpath = os.getenv("HOME") .. "/Wallpapers/" .. obj.file_name
         for _,screen in ipairs(obj.screens()) do
             screen:desktopImageURL("file://" .. localpath)
         end
@@ -71,7 +71,7 @@ local function bingRequest()
                         obj.task:terminate()
                         obj.task = nil
                     end
-                    local localpath = os.getenv("HOME") .. "/.Trash/" .. obj.file_name
+                    local localpath = os.getenv("HOME") .. "/Wallpapers/" .. obj.file_name
                     obj.task = hs.task.new("/usr/bin/curl", curl_callback, {"-sSf", "-A", user_agent_str, obj.full_url, "-o", localpath})
                     obj.task:start()
                 end
